@@ -36,9 +36,16 @@ namespace Student_Registration
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 _connection.Close();
-                Session["student_id"] = Convert.ToInt32(dt.Rows[0]["SID"]);
-                ClearForm();
-                Response.Redirect("Home.aspx");
+                if (dt.Rows.Count > 0)
+                {
+                    Session["student_id"] = Convert.ToInt32(dt.Rows[0]["SID"]);
+                    ClearForm();
+                    Response.Redirect("Home.aspx");
+                }
+                else
+                {
+                    lbl_msg.Text = "Oops! You may have entered wrong credentials!";
+                }
             }
         }
     }
