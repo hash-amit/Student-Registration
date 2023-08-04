@@ -44,7 +44,7 @@
         <tr>
             <td class="fields_name">Email Address:* </td>
             <td class="data_field">
-                <asp:TextBox ID="text_email" runat="server" Width="100%"></asp:TextBox></td>
+                <asp:TextBox ID="text_email" TextMode="Email" runat="server" Width="100%"></asp:TextBox></td>
         </tr>
 
         <tr>

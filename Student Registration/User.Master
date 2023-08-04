@@ -1,0 +1,91 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="User.master.cs" Inherits="Student_Registration.User" %>
+
+<%@ Register Src="~/Header.ascx" TagName="Myheader" TagPrefix="asp" %>
+<%@ Register Src="~/Footer.ascx" TagName="Myfooter" TagPrefix="asp" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <style>
+        /* CSS for styling the menu bar */
+        ul.menu {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            background-color: #1e90ff;
+            overflow: hidden;
+            height: 40px;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+        }
+
+            ul.menu li {
+                float: left;
+            }
+
+                ul.menu li a {
+                    display: block;
+                    color: #333;
+                    text-align: center;
+                    padding: 14px 16px;
+                    text-decoration: none;
+                    font-family: Math;
+                    font-weight: bold;
+                }
+
+                    ul.menu li a:hover {
+                        background-color: #ddd;
+                    }
+
+                ul.menu li.active a {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+    </style>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        <asp:Myheader ID="h1" runat="server"></asp:Myheader>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div>
+                            <!-- ============= Menu ============ -->
+                            <ul class="menu">
+                                <li><a href="ChangePassword.aspx">Change Password</a></li>
+                                <li><a href="Logout.aspx">Logout</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <asp:Myfooter ID="f1" runat="server"></asp:Myfooter>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>

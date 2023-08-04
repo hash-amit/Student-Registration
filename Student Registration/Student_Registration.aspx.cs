@@ -109,7 +109,7 @@ namespace Student_Registration
         //Inserting user input into database
         protected void btn_register_Click(object sender, EventArgs e)
         {
-            if (text_email.Text != string.Empty && text_fname.Text != string.Empty && text_pass.Text != string.Empty && ddl_course.SelectedValue != null)
+            if (text_email.Text != string.Empty && text_fname.Text != string.Empty && text_pass.Text != string.Empty && text_pass.Text.Length <= 10 && ddl_course.SelectedValue != null)
             {
                 _connection.Open();
                 SqlCommand cmd = new SqlCommand("spCheckEmail", _connection);

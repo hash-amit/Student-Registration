@@ -7,6 +7,9 @@
     color: white;
     height: 23px;
     width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
   }
 </style>
 
