@@ -58,7 +58,7 @@
 
         <tr>
             <td class="fields_name"></td>
-            <td class="data_field">
+            <td>
                 <asp:Label ID="lbl_msg" runat="server" Text="" ForeColor="Red"></asp:Label>
             </td>
         </tr>

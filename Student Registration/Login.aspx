@@ -13,6 +13,7 @@
             display: flex;
             justify-content: center;
             height: 28px;
+            width:250px;
         }
 
         table {
