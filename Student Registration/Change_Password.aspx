@@ -4,70 +4,86 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
         body {
-            margin: 0px;
-            padding: 0px;
+            margin: 0;
+            padding: 0;
             font-family: 'system-ui';
+            background-color: #f1f1f1;
         }
 
-        .data_field {
+        .fcontainer {
             display: flex;
-            justify-content: center;
-            height: 28px;
-            width:350px;
+            flex-direction: column;
+            width: 300px;
+            margin: 20px auto;
+            border-radius: 8px;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+            justify-content: space-around;
         }
 
-        table {
+        .fitem {
+            margin: 3px 0px;
+            height: 30px;
+            border-radius: 5px;
             display: flex;
-            justify-content: center;
+            align-items: center;
+            padding: 5px;
         }
 
-        .fields_name {
-            font-weight: 600;
+        .fitem input{
+            flex: 1;
+            height: 100%;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1e90ff2e;
+        }
+
+        .fitem select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('arrow-down.png');
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            height: 117%;
         }
 
         .chng_btn {
-            width: 140px;
+            width: 100%;
             background-color: #1e90ff;
             border: none;
-            height: 30px;
+            height: 40px;
             border-radius: 5px;
             font-weight: 600;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .fitem .error {
+            color: red;
         }
     </style>
-    <table>
-        <tr>
-            <td class="fields_name">Current Password:* </td>
-            <td class="data_field">
-                <asp:TextBox ID="text_current_pass" TextMode="Password" runat="server" Width="100%"></asp:TextBox>
-            </td>
-        </tr>
+    <div class="fcontainer">
+        <div class="fitem">
+            <asp:TextBox ID="text_current_pass" runat="server" placeholder="Current Password*" CssClass="form-control" required=""></asp:TextBox>
+        </div>
 
-        <tr>
-            <td class="fields_name">New Password:* </td>
-            <td class="data_field">
-                <asp:TextBox ID="text_new_pass" TextMode="Password" runat="server" Width="100%"></asp:TextBox>
-            </td>
-        </tr>
+        <div class="fitem">
+            <asp:TextBox ID="text_new_pass" runat="server" TextMode="Password" placeholder="New Password*" CssClass="form-control" required=""></asp:TextBox>
+        </div>
 
-        <tr>
-            <td class="fields_name">Confirm Password:* </td>
-            <td class="data_field">
-                <asp:TextBox ID="text_confirm_pass" TextMode="Password" runat="server" Width="100%"></asp:TextBox>
-            </td>
-        </tr>
+        <div class="fitem">
+            <asp:TextBox ID="text_confirm_pass" runat="server" TextMode="Password" placeholder="Confirm Password*" CssClass="form-control" required=""></asp:TextBox>
+        </div>
 
-        <tr>
-            <td class="fields_name"></td>
-            <td>
-                <asp:Label ID="lbl_msg" runat="server" Text="" ForeColor="Red"></asp:Label>
-            </td>
-        </tr>
+        <div class="fitem">
+            <asp:Label ID="lbl_msg" runat="server" Text="" ForeColor="Red"></asp:Label>
+        </div>
 
-        <tr>
-            <td></td>
-            <td class="data_field">
-                <asp:Button ID="btn_change_pass" CssClass="chng_btn" Text="Change Password" runat="server" OnClick="btn_change_pass_Click" />
-            </td>
-        </tr>
-    </table>
+        <div>
+            <asp:Button ID="btn_change_pass" CssClass="chng_btn" Text="Change Password" runat="server" OnClick="btn_change_pass_Click" />
+        </div>
+    </div>
 </asp:Content>
