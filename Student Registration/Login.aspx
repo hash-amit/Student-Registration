@@ -4,59 +4,83 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
         body {
-            margin: 0px;
-            padding: 0px;
+            margin: 0;
+            padding: 0;
             font-family: 'system-ui';
+            background-color: #f1f1f1;
         }
 
-        .data_field {
+        .fcontainer {
             display: flex;
-            justify-content: center;
-            height: 28px;
-            width:250px;
+            flex-direction: column;
+            width: 300px;
+            margin: 20px auto;
+            border-radius: 8px;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+            justify-content: space-around;
         }
 
-        table {
+        .fitem {
+            margin: 3px 0px;
+            height: 30px;
+            border-radius: 5px;
             display: flex;
-            justify-content: center;
+            align-items: center;
+            padding: 5px;
         }
 
-        .fields_name {
-            font-weight: 600;
+        .fitem input{
+            flex: 1;
+            height: 100%;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1e90ff2e;
+        }
+
+        .fitem select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('arrow-down.png');
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            height: 117%;
         }
 
         .log_btn {
-            width: 100px;
+            width: 100%;
             background-color: #1e90ff;
             border: none;
-            height: 30px;
+            height: 40px;
             border-radius: 5px;
             font-weight: 600;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .fitem .error {
+            color: red;
         }
     </style>
-    <table>
-        <tr>
-            <td class="fields_name">Email Address:* </td>
-            <td class="data_field">
-                <asp:TextBox ID="text_email" TextMode="Email" runat="server" Width="100%"></asp:TextBox></td>
-        </tr>
 
-        <tr>
-            <td class="fields_name">Password:* </td>
-            <td class="data_field">
-                <asp:TextBox ID="text_pass" TextMode="Password" runat="server" Width="100%"></asp:TextBox></td>
-        </tr>
+    <div class="fcontainer">
+        <div class="fitem">
+            <asp:TextBox ID="text_email" runat="server" placeholder="Email Address*" TextMode="Email" CssClass="form-control" required=""></asp:TextBox>
+        </div>
 
-        <tr>
-            <td class="fields_name"></td>
-            <td>
-                <asp:Label ID="lbl_msg" runat="server" Text="" ForeColor="Red"></asp:Label></td>
-        </tr>
+        <div class="fitem">
+            <asp:TextBox ID="text_pass" runat="server" TextMode="Password" placeholder="Password*" CssClass="form-control" required=""></asp:TextBox>
+        </div>
 
-        <tr>
-            <td></td>
-            <td class="data_field">
-                <asp:Button ID="btn_login" CssClass="log_btn" Text="Login" runat="server" OnClick="btn_login_Click" /></td>
-        </tr>
-    </table>
+        <div class="fitem">
+            <asp:Label ID="lbl_msg" runat="server" Text="" ForeColor="Red"></asp:Label>
+        </div>
+
+        <div>
+            <asp:Button ID="btn_login" CssClass="log_btn" Text="Login" runat="server" OnClick="btn_login_Click" />
+        </div>
+    </div>
 </asp:Content>
