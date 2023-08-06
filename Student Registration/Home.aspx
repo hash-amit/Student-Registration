@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <center>
         <p>Hello <%= Message %></p>
-        <asp:GridView ID="gv_user" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" >
+        <asp:GridView ID="gv_user" runat="server" AutoGenerateColumns="False" OnRowCommand="gv_user_RowCommand" CellPadding="4" ForeColor="#333333" GridLines="None" >
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:TemplateField HeaderText="ID">
@@ -59,6 +59,18 @@
                 <asp:TemplateField HeaderText="Password">
                     <ItemTemplate>
                         <%#Eval("PASSWORD") %>
+                    </ItemTemplate>
+                </asp:TemplateField>
+
+                <asp:TemplateField HeaderText="Password">
+                    <ItemTemplate>
+                        <asp:Button ID="dlt_btn" runat="server" Text="Delete" CommandName="D" CommandArgument='<%#Eval("SID") %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
+
+                <asp:TemplateField HeaderText="Password">
+                    <ItemTemplate>
+                        <asp:Button ID="edt_btn" runat="server" Text="Edit" CommandName="E" CommandArgument='<%#Eval("SID") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

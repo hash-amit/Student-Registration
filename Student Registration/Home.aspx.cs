@@ -45,5 +45,22 @@ namespace Student_Registration
                 Response.Redirect("Login.aspx");
             }
         }
+
+        protected void gv_user_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "D")
+            {
+                _connection.Open();
+                SqlCommand sc = new SqlCommand("Delete from tbStudents where SID = '"+e.CommandArgument+"'", _connection);
+                sc.ExecuteNonQuery();
+                _connection.Close();
+                Response.Redirect("Login.aspx");
+
+            }
+            //else if (e.CommandName == "E")
+            //{
+
+            //}
+        }
     }
 }
