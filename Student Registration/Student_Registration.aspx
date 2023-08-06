@@ -5,94 +5,112 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">  
     <style>
         body {
-            margin: 0px;
-            padding: 0px;
+            margin: 0;
+            padding: 0;
             font-family: 'system-ui';
+            background-color: #f1f1f1;
         }
 
-        .data_field {
+        .fcontainer {
             display: flex;
-            justify-content: center;
-            height:28px;
+            flex-direction: column;
+            width: 300px;
+            margin: 20px auto;
+            border-radius: 8px;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+            justify-content: space-around;
         }
 
-        table {
+        .fitem {
+            margin: 3px 0px;
+            height: 30px;
+            border-radius: 5px;
             display: flex;
-            justify-content: center;
+            align-items: center;
+            padding: 5px;
         }
 
-        .fields_name {
-            font-weight: 600;
+        .fitem input,
+        .fitem select {
+            flex: 1;
+            height: 100%;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1e90ff2e;
+        }
+
+        .fitem select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('arrow-down.png');
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            height: 117%;
         }
 
         .reg_btn {
-            width: 100px;
+            width: 100%;
             background-color: #1e90ff;
             border: none;
-            height: 30px;
+            height: 40px;
             border-radius: 5px;
-            font-weight:600;
+            font-weight: 600;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .fitem .error {
+            color: red;
         }
     </style>
-    <table>
-        <tr>
-            <td class="fields_name">Full Name:* </td>
-            <td class="data_field">
-                <asp:TextBox ID="text_fname" runat="server" Width="100%"></asp:TextBox></td>
-        </tr>
 
-        <tr>
-            <td class="fields_name">Email Address:* </td>
-            <td class="data_field">
-                <asp:TextBox ID="text_email" TextMode="Email" runat="server" Width="100%"></asp:TextBox></td>
-        </tr>
+    <div class="fcontainer">
+        <div class="fitem">
+            <asp:TextBox ID="text_fname" runat="server" placeholder="Full Name*" CssClass="form-control" required=""></asp:TextBox>
+        </div>
 
-        <tr>
-            <td class="fields_name">Gender: </td>
-            <td class="data_field">
-                <asp:RadioButtonList ID="rbl_gender" runat="server" RepeatColumns="3" Width="103%"></asp:RadioButtonList></td>
-        </tr>
+        <div class="fitem">
+            <asp:TextBox ID="text_email" runat="server" placeholder="Email Address*" TextMode="Email" CssClass="form-control" required=""></asp:TextBox>
+        </div>
 
-        <tr>
-            <td class="fields_name">Course:* </td>
-            <td class="data_field">
-                <asp:DropDownList ID="ddl_course" runat="server" Width="103%"></asp:DropDownList></td>
-        </tr>
+        <div class="fitem">
+            <asp:RadioButtonList ID="rbl_gender" runat="server" RepeatColumns="3" CssClass="form-control" required="">
+            </asp:RadioButtonList>
+        </div>
 
-        <tr>
-            <td class="fields_name">Country: </td>
-            <td class="data_field">
-                <asp:DropDownList ID="ddl_country" runat="server" OnSelectedIndexChanged="ddl_country_SelectedIndexChanged" AutoPostBack="true" Width="103%"></asp:DropDownList></td>
-        </tr>
+        <div class="fitem">
+            <asp:DropDownList ID="ddl_course" runat="server" CssClass="form-control" required="">
+            </asp:DropDownList>
+        </div>
 
-        <tr>
-            <td class="fields_name">State: </td>
-            <td class="data_field">
-                <asp:DropDownList ID="ddl_state" runat="server" Width="103%"></asp:DropDownList></td>
-        </tr>
+        <div class="fitem">
+            <asp:DropDownList ID="ddl_country" runat="server" OnSelectedIndexChanged="ddl_country_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control" required="">
+            </asp:DropDownList>
+        </div>
 
-        <tr>
-            <td class="fields_name">Phone: </td>
-            <td class="data_field">
-                <asp:TextBox ID="text_phone" runat="server" Width="100%"></asp:TextBox></td>
-        </tr>
+        <div class="fitem">
+            <asp:DropDownList ID="ddl_state" runat="server" CssClass="form-control" required="">
+            </asp:DropDownList>
+        </div>
 
-        <tr>
-            <td class="fields_name">Password:* </td>
-            <td class="data_field">
-                <asp:TextBox ID="text_pass" TextMode="Password" runat="server" Width="100%"></asp:TextBox></td>
-        </tr>
+        <div class="fitem">
+            <asp:TextBox ID="text_phone" runat="server" placeholder="Phone" CssClass="form-control"></asp:TextBox>
+        </div>
 
-        <tr>
-            <td class="fields_name"></td>
-            <td>
-                <asp:Label ID="lbl_msg" runat="server" Text="" ForeColor="Red"></asp:Label></td>
-        </tr>
+        <div class="fitem">
+            <asp:TextBox ID="text_pass" runat="server" TextMode="Password" placeholder="Password*" CssClass="form-control" required=""></asp:TextBox>
+        </div>
 
-        <tr>
-            <td></td>
-            <td class="data_field">
-                <asp:Button ID="btn_register" CssClass="reg_btn" Text="Register" runat="server" OnClick="btn_register_Click" /></td>
-        </tr>
-    </table>
+        <div class="fitem">
+            <asp:Label ID="lbl_msg" runat="server" Text="" ForeColor="Red"></asp:Label>
+        </div>
+
+        <div >
+            <asp:Button ID="btn_register" runat="server" Text="Register" CssClass="reg_btn" OnClick="btn_register_Click" />
+        </div>
+    </div>
 </asp:Content>
