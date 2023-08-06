@@ -21,8 +21,9 @@ namespace Student_Registration
                 BindGender();
                 BindCourses();
                 BindCountries();
-                ddl_country.Items.Insert(0, new ListItem("---------------------Select---------------------", "0")); //in this line first 0 is indicates the number of index and the second 0 is the value
-                ddl_course.Items.Insert(0, new ListItem("---------------------Select---------------------", "0"));
+                ddl_country.Items.Insert(0, new ListItem("Select Country", "0")); //in this line first 0 is indicates the number of index and the second 0 is the value
+                ddl_course.Items.Insert(0, new ListItem("Select Course", "0"));
+                ddl_state.Items.Insert(0, new ListItem("Select State", "0"));
                 ddl_state.Enabled = false;
             }
         }
@@ -105,13 +106,12 @@ namespace Student_Registration
             ddl_state.DataTextField = "STATE NAME";
             ddl_state.DataSource = dt;
             ddl_state.DataBind();
+            ddl_state.Items.Insert(0, new ListItem("Select State", "0"));
         }
 
         //Inserting user input into database
         protected void btn_register_Click(object sender, EventArgs e)
         {
-            if (text_email.Text != string.Empty && text_fname.Text != string.Empty && text_pass.Text != string.Empty && text_pass.Text.Length <= 10 && ddl_course.SelectedValue != null)
-            {
                 _connection.Open();
                 SqlCommand cmd = new SqlCommand("spCheckEmail", _connection);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -142,11 +142,6 @@ namespace Student_Registration
                     ClearForm();
                     lbl_msg.Text = "You have successfully registered...!!";
                 }
-            }
-            else
-            {
-                lbl_msg.Text = "You might have missed the Asterisk(*) field!";
-            }
         }
 
         protected void ddl_country_SelectedIndexChanged(object sender, EventArgs e)
@@ -155,7 +150,7 @@ namespace Student_Registration
             {
                 ddl_state.Enabled = false;
             }
-            else 
+            else
             {
                 BindStates();
             }
