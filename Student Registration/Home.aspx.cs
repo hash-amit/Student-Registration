@@ -18,7 +18,10 @@ namespace Student_Registration
         public string Message { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            ShowUserDetails();
+            if (!IsPostBack)
+            {
+                ShowUserDetails();
+            }
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.Cache.SetNoStore();
         }
