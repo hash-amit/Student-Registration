@@ -109,22 +109,74 @@ namespace Student_Registration
             ddl_state.Items.Insert(0, new ListItem("Select State", "0"));
         }
 
+        public bool FormValidation()
+        {
+            if (rbl_gender.SelectedValue != "")
+            {
+                if(ddl_course.SelectedValue != "0")
+                {
+                    if(ddl_country.SelectedValue != "0")
+                    {
+                        if(ddl_state.SelectedValue != "0")
+                        {
+                            if((text_pass.Text.Length) == 10)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                lbl_msg.Text = "Mobile number should be of 10 digit";
+                            }
+                        }
+                        else
+                        {
+                            lbl_msg.Text = "Please select State";
+                        }
+                    }
+                    else
+                    {
+                        lbl_msg.Text = "Please select Country";
+                    }
+                }
+                else
+                {
+                    lbl_msg.Text = "Please select Course";
+                }
+            }
+            else
+            {
+                lbl_msg.Text = "Please select the Gender";
+            }
+            return false;
+        }
+
+        public bool CheckDuplicateRegistration()
+        {
+            _connection.Open();
+            SqlCommand cmd = new SqlCommand("spCheckEmail", _connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@email", text_email.Text);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            _connection.Close();
+            if (dt.Rows.Count > 0)
+            {
+                lbl_msg.Text = "Email is already registered!";
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         //Inserting user input into database
         protected void btn_register_Click(object sender, EventArgs e)
         {
-                _connection.Open();
-                SqlCommand cmd = new SqlCommand("spCheckEmail", _connection);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@email", text_email.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                _connection.Close();
-                if (dt.Rows.Count > 0)
-                {
-                    lbl_msg.Text = "This emailId is already exist !!";
-                }
-                else
+            if (FormValidation() == true)
+            {
+                if (CheckDuplicateRegistration() == true)
                 {
                     _connection.Open();
                     SqlCommand sc = new SqlCommand("spInstertData", _connection);
@@ -142,6 +194,7 @@ namespace Student_Registration
                     ClearForm();
                     lbl_msg.Text = "You have successfully registered...!!";
                 }
+            }
         }
 
         protected void ddl_country_SelectedIndexChanged(object sender, EventArgs e)
