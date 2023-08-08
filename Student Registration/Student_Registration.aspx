@@ -105,6 +105,10 @@
             <asp:TextBox ID="text_pass" runat="server" TextMode="Password" placeholder="Password*" CssClass="form-control" required=""></asp:TextBox>
         </div>
 
+        <div class="fitem">
+            <asp:FileUpload ID="photo" runat="server" placeholder="Upload File" CssClass="form-control" required=""></asp:FileUpload>
+        </div>
+
         <%--Error message lable--%>
         <center>
             <asp:Label ID="lbl_msg" runat="server" Text="" ForeColor="Red"></asp:Label>

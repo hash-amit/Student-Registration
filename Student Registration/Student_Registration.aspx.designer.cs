@@ -87,6 +87,15 @@ namespace Student_Registration
         protected global::System.Web.UI.WebControls.TextBox text_pass;
 
         /// <summary>
+        /// photo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload photo;
+
+        /// <summary>
         /// lbl_msg control.
         /// </summary>
         /// <remarks>

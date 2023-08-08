@@ -87,8 +87,20 @@ CREATE TABLE tbStudents
     [COUNTRY] INT NOT NULL,
     [STATE] INT NOT NULL,
     [PHONE] VARCHAR(20) NOT NULL,
-    [PASSWORD] VARCHAR(10) NOT NULL
+    [PASSWORD] VARCHAR(10) NOT NULL,
 );
+
+-- Removing all the records from the table "tbStudents"
+TRUNCATE TABLE tbStudents;
+
+-- Add one more column in tbStudents for photo
+ALTER TABLE tbStudents ADD [PHOTO] VARCHAR(100) NOT NULL
+
+-- Rename the column
+sp_rename 'tbStudents.Photo', 'PHOTO';
+
+-- To view the column, whether added or not
+SELECT * FROM tbStudents
 
 -- Stored Procedures
 CREATE PROC spBindCountries  
@@ -192,4 +204,23 @@ AS
 BEGIN  
     INSERT INTO tbStudents ([FULL NAME], [EMAIL], [GENDER], [COURSE], [COUNTRY], [STATE], [PHONE], [PASSWORD])  
     VALUES (@fname, @email, @gender, @course, @country, @state, @phone, @pass);  
+END;
+
+-- Modifying stored procedure
+ALTER PROC spInstertData  
+(  
+    @fname varchar(60),  
+    @email varchar(60),  
+    @gender int,  
+    @course int,  
+    @country int,  
+    @state int,  
+    @phone varchar(20),  
+    @pass varchar(10),
+	@photo varchar(100)
+)  
+AS  
+BEGIN  
+    INSERT INTO tbStudents ([FULL NAME], [EMAIL], [GENDER], [COURSES], [COUNTRY], [STATE], [PHONE], [PASSWORD], [PHOTO])  
+    VALUES (@fname, @email, @gender, @course, @country, @state, @phone, @pass, @photo);  
 END;
