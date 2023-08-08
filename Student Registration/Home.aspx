@@ -8,6 +8,12 @@
         <asp:GridView ID="gv_user" runat="server" AutoGenerateColumns="False" OnRowCommand="gv_user_RowCommand" CellPadding="4" ForeColor="#333333" GridLines="None" >
             <AlternatingRowStyle BackColor="White" />
             <Columns>
+                <asp:TemplateField HeaderText="Profile">
+                    <ItemTemplate>
+                        <asp:Image ID="profile_img" runat="server" Width="50px" Height="50px" ImageUrl='<%# Eval("PHOTO","~/Photos/{0}") %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
+
                 <asp:TemplateField HeaderText="ID">
                     <ItemTemplate>
                         <%#Eval("SID") %>
