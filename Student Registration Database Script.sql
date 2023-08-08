@@ -57,6 +57,8 @@ CREATE TABLE tbStates
     [STATE NAME] VARCHAR(60) NOT NULL
 );
 
+SELECT * FROM tbStates
+
 -- Insert data into tbStates table
 INSERT INTO tbStates ([STATE ID], [COUNTRY ID], [STATE NAME])
 VALUES

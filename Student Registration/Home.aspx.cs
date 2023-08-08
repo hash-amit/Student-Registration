@@ -63,10 +63,10 @@ namespace Student_Registration
                 Response.Redirect("Login.aspx");
 
             }
-            //else if (e.CommandName == "E")
-            //{
-
-            //}
+            else if (e.CommandName == "E")
+            {
+                Response.Redirect("EditProfile.aspx");
+            }
         }
     }
 }

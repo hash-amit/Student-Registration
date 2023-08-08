@@ -1,0 +1,128 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="EditProfile.aspx.cs" Inherits="Student_Registration.EditProfile" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'system-ui';
+            background-color: #f1f1f1;
+        }
+
+        .fcontainer {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            margin: 20px auto;
+            border-radius: 8px;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+            justify-content: space-around;
+        }
+
+        .fitem {
+            margin: 3px 0px;
+            height: 30px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            padding: 5px;
+        }
+
+        .fitem input,
+        .fitem select {
+            flex: 1;
+            height: 100%;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1e90ff2e;
+        }
+
+        .fitem select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('arrow-down.png');
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            height: 117%;
+        }
+
+        .save_btn {
+            width: 97%;
+            background-color: #1e90ff;
+            border: none;
+            height: 40px;
+            border-radius: 5px;
+            font-weight: 600;
+            color: #ffffff;
+            padding-left: 0px;
+            padding-right: 0px;
+            cursor: pointer;
+            margin: 5px auto;
+        }
+
+        .alignFileUpload {
+            display: flex; /* Use flexbox to align items */
+            align-items: center; /* Vertically center the items */
+            flex: 1;
+        }
+
+    </style>
+
+    <div class="fcontainer">
+        <div class="fitem">
+            <asp:TextBox ID="text_fname" runat="server" placeholder="Full Name*" required=""></asp:TextBox>
+        </div>
+
+        <div class="fitem">
+            <asp:TextBox ID="text_email" runat="server" placeholder="Email Address*" TextMode="Email" required=""></asp:TextBox>
+        </div>
+
+        <div class="fitem">
+            <asp:RadioButtonList ID="rbl_gender" runat="server" RepeatColumns="3">
+            </asp:RadioButtonList>
+        </div>
+
+        <div class="fitem">
+            <asp:DropDownList ID="ddl_course" runat="server">
+            </asp:DropDownList>
+        </div>
+
+        <div class="fitem">
+            <asp:DropDownList ID="ddl_country" OnSelectedIndexChanged="ddl_country_SelectedIndexChanged" AutoPostBack="true" runat="server">
+            </asp:DropDownList>
+        </div>
+
+        <div class="fitem">
+            <asp:DropDownList ID="ddl_state" runat="server">
+            </asp:DropDownList>
+        </div>
+
+        <div class="fitem">
+            <asp:TextBox ID="text_phone" runat="server" placeholder="Phone"></asp:TextBox>
+        </div>
+
+        <div class="fitem">
+            <asp:TextBox ID="text_pass" runat="server" TextMode="Password" placeholder="Current Password To Verify You*"></asp:TextBox>
+        </div>
+
+        <div class="fitem alignFileUpload">
+            <asp:FileUpload ID="photo" runat="server"></asp:FileUpload>
+        </div>
+
+        <%--Error message lable--%>
+        <center>
+            <asp:Label ID="lbl_msg" runat="server" Text="" ForeColor="Red"></asp:Label>
+        </center>
+
+        <div>
+            <center>
+                <asp:Button ID="btn_save" runat="server" Text="Save" CssClass="save_btn" OnClick="btn_save_Click" />
+            </center>
+        </div>
+    </div>
+</asp:Content>
