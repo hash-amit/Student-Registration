@@ -60,12 +60,12 @@
             border-radius: 5px;
             font-weight: 600;
             color: #ffffff;
+            padding-left: 0px;
+            padding-right: 0px;
             cursor: pointer;
+            margin: 5px auto;
         }
 
-        .fitem .error {
-            color: red;
-        }
     </style>
 
     <div class="fcontainer">
@@ -78,7 +78,7 @@
         </div>
 
         <div class="fitem">
-            <asp:RadioButtonList ID="rbl_gender" runat="server" RepeatColumns="3" CssClass="form-control" required="">
+            <asp:RadioButtonList ID="rbl_gender" runat="server" RepeatColumns="3" CssClass="form-control">
             </asp:RadioButtonList>
         </div>
 
@@ -105,11 +105,12 @@
             <asp:TextBox ID="text_pass" runat="server" TextMode="Password" placeholder="Password*" CssClass="form-control" required=""></asp:TextBox>
         </div>
 
-        <div class="fitem">
+        <%--Error message lable--%>
+        <center>
             <asp:Label ID="lbl_msg" runat="server" Text="" ForeColor="Red"></asp:Label>
-        </div>
+        </center>
 
-        <div >
+        <div>
             <asp:Button ID="btn_register" runat="server" Text="Register" CssClass="reg_btn" OnClick="btn_register_Click" />
         </div>
     </div>
