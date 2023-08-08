@@ -51,19 +51,19 @@
         }
 
         .chng_btn {
-            width: 100%;
+            width: 97%;
             background-color: #1e90ff;
             border: none;
             height: 40px;
             border-radius: 5px;
             font-weight: 600;
             color: #ffffff;
+            padding-left: 0px;
+            padding-right: 0px;
             cursor: pointer;
+            margin: 5px auto;
         }
 
-        .fitem .error {
-            color: red;
-        }
     </style>
     <div class="fcontainer">
         <div class="fitem">
@@ -78,12 +78,14 @@
             <asp:TextBox ID="text_confirm_pass" runat="server" TextMode="Password" placeholder="Confirm Password*" CssClass="form-control" required=""></asp:TextBox>
         </div>
 
-        <div class="fitem">
+        <center>
             <asp:Label ID="lbl_msg" runat="server" Text="" ForeColor="Red"></asp:Label>
-        </div>
+        </center>
 
         <div>
-            <asp:Button ID="btn_change_pass" CssClass="chng_btn" Text="Change Password" runat="server" OnClick="btn_change_pass_Click" />
+            <center>
+                <asp:Button ID="btn_change_pass" CssClass="chng_btn" Text="Change Password" runat="server" OnClick="btn_change_pass_Click" />
+            </center>
         </div>
     </div>
 </asp:Content>

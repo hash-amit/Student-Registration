@@ -53,7 +53,7 @@
         }
 
         .reg_btn {
-            width: 100%;
+            width: 97%;
             background-color: #1e90ff;
             border: none;
             height: 40px;
@@ -121,7 +121,9 @@
         </center>
 
         <div>
-            <asp:Button ID="btn_register" runat="server" Text="Register" CssClass="reg_btn" OnClick="btn_register_Click" />
+            <center>
+                <asp:Button ID="btn_register" runat="server" Text="Register" CssClass="reg_btn" OnClick="btn_register_Click" />
+            </center>
         </div>
     </div>
 </asp:Content>
