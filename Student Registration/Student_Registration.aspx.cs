@@ -122,7 +122,17 @@ namespace Student_Registration
                         {
                             if((text_phone.Text.Length) == 10)
                             {
-                                return true;
+                                string Ext = (Path.GetExtension(photo.PostedFile.FileName)).ToUpper();
+                                string fName = Path.GetFileName(photo.PostedFile.FileName);
+                                if ((fName != "") && (Ext == ".JPG" || Ext == ".JPEG" || Ext == ".PNG" || Ext == ".JFIF"))
+                                {
+                                    ViewState["fileName"] = DateTime.Now.Ticks + fName; ;
+                                    return true;
+                                }
+                                else
+                                {
+                                    lbl_msg.Text = "Please upload image file";
+                                }
                             }
                             else
                             {
@@ -179,8 +189,7 @@ namespace Student_Registration
             {
                 if (CheckDuplicateRegistration() == true)
                 {
-                    string fName = Path.GetFileName(photo.PostedFile.FileName);
-                    photo.SaveAs(Server.MapPath("Photos"+"\\"+fName));
+                    photo.SaveAs(Server.MapPath("Photos" + "\\" + ViewState["fileName"]));
                     _connection.Open();
                     SqlCommand sc = new SqlCommand("spInstertData", _connection);
                     sc.CommandType = CommandType.StoredProcedure;
@@ -192,7 +201,7 @@ namespace Student_Registration
                     sc.Parameters.AddWithValue("@state", ddl_state.SelectedValue);
                     sc.Parameters.AddWithValue("@phone", text_phone.Text);
                     sc.Parameters.AddWithValue("@pass", text_pass.Text);
-                    sc.Parameters.AddWithValue("@photo", fName);
+                    sc.Parameters.AddWithValue("@photo", ViewState["fileName"]);
                     sc.ExecuteNonQuery();
                     _connection.Close();
                     ClearForm();
