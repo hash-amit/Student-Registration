@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
+using System.IO;
 
 namespace Student_Registration
 {
@@ -53,10 +54,12 @@ namespace Student_Registration
         {
             if (e.CommandName == "D")
             {
+                string[] arr = e.CommandArgument.ToString().Split(',');
                 _connection.Open();
-                SqlCommand sc = new SqlCommand("Delete from tbStudents where SID = '"+e.CommandArgument+"'", _connection);
+                SqlCommand sc = new SqlCommand("Delete from tbStudents where SID = '" + arr[0] +"'", _connection);
                 sc.ExecuteNonQuery();
                 _connection.Close();
+                File.Delete(Server.MapPath("Photos" + "\\" + arr[1]));
                 Response.Redirect("Login.aspx");
 
             }

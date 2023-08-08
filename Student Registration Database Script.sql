@@ -88,6 +88,7 @@ CREATE TABLE tbStudents
     [STATE] INT NOT NULL,
     [PHONE] VARCHAR(20) NOT NULL,
     [PASSWORD] VARCHAR(10) NOT NULL,
+	[PHOTO] VARCHAR(100) NOT NULL
 );
 
 -- Removing all the records from the table "tbStudents"

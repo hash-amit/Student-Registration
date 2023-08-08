@@ -70,7 +70,7 @@
 
                 <asp:TemplateField HeaderText="Password">
                     <ItemTemplate>
-                        <asp:Button ID="dlt_btn" runat="server" Text="Delete" CommandName="D" CommandArgument='<%#Eval("SID") %>' />
+                        <asp:Button ID="dlt_btn" runat="server" Text="Delete" CommandName="D" CommandArgument='<%#Eval("SID") + "," + Eval("PHOTO") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
 
