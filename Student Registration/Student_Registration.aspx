@@ -76,43 +76,43 @@
 
     <div class="fcontainer">
         <div class="fitem">
-            <asp:TextBox ID="text_fname" runat="server" placeholder="Full Name*" CssClass="form-control" required=""></asp:TextBox>
+            <asp:TextBox ID="text_fname" runat="server" placeholder="Full Name*" required=""></asp:TextBox>
         </div>
 
         <div class="fitem">
-            <asp:TextBox ID="text_email" runat="server" placeholder="Email Address*" TextMode="Email" CssClass="form-control" required=""></asp:TextBox>
+            <asp:TextBox ID="text_email" runat="server" placeholder="Email Address*" TextMode="Email" required=""></asp:TextBox>
         </div>
 
         <div class="fitem">
-            <asp:RadioButtonList ID="rbl_gender" runat="server" RepeatColumns="3" CssClass="form-control">
+            <asp:RadioButtonList ID="rbl_gender" runat="server" RepeatColumns="3">
             </asp:RadioButtonList>
         </div>
 
         <div class="fitem">
-            <asp:DropDownList ID="ddl_course" runat="server" CssClass="form-control" required="">
+            <asp:DropDownList ID="ddl_course" runat="server">
             </asp:DropDownList>
         </div>
 
         <div class="fitem">
-            <asp:DropDownList ID="ddl_country" runat="server" OnSelectedIndexChanged="ddl_country_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control" required="">
+            <asp:DropDownList ID="ddl_country" runat="server" OnSelectedIndexChanged="ddl_country_SelectedIndexChanged" AutoPostBack="true">
             </asp:DropDownList>
         </div>
 
         <div class="fitem">
-            <asp:DropDownList ID="ddl_state" runat="server" CssClass="form-control" required="">
+            <asp:DropDownList ID="ddl_state" runat="server">
             </asp:DropDownList>
         </div>
 
         <div class="fitem">
-            <asp:TextBox ID="text_phone" runat="server" placeholder="Phone" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="text_phone" runat="server" placeholder="Phone"></asp:TextBox>
         </div>
 
         <div class="fitem">
-            <asp:TextBox ID="text_pass" runat="server" TextMode="Password" placeholder="Password*" CssClass="form-control" required=""></asp:TextBox>
+            <asp:TextBox ID="text_pass" runat="server" TextMode="Password" placeholder="Password*"></asp:TextBox>
         </div>
 
         <div class="fitem alignFileUpload">
-            <asp:FileUpload ID="photo" runat="server" placeholder="Upload File" CssClass="form-control" required=""></asp:FileUpload>
+            <asp:FileUpload ID="photo" runat="server"></asp:FileUpload>
         </div>
 
         <%--Error message lable--%>
