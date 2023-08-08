@@ -66,6 +66,12 @@
             margin: 5px auto;
         }
 
+        .alignFileUpload {
+            display: flex; /* Use flexbox to align items */
+            align-items: center; /* Vertically center the items */
+            flex: 1;
+        }
+
     </style>
 
     <div class="fcontainer">
@@ -105,7 +111,7 @@
             <asp:TextBox ID="text_pass" runat="server" TextMode="Password" placeholder="Password*" CssClass="form-control" required=""></asp:TextBox>
         </div>
 
-        <div class="fitem">
+        <div class="fitem alignFileUpload">
             <asp:FileUpload ID="photo" runat="server" placeholder="Upload File" CssClass="form-control" required=""></asp:FileUpload>
         </div>
 
