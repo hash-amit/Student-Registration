@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using System.IO;
+using System.Xml.Linq;
 
 namespace Student_Registration
 {
@@ -32,6 +34,7 @@ namespace Student_Registration
                 BindCountries();
                 ddl_course.Items.Insert(0, new ListItem("Select Course", "0"));
                 ddl_country.Items.Insert(0, new ListItem("Select Country", "0")); 
+                //ddl_state.Items.Insert(0, new ListItem("Select State", "0")); 
                 PopulateData();
             }
         }
@@ -114,6 +117,7 @@ namespace Student_Registration
             _connection.Close();
             text_fname.Text = dataTable.Rows[0]["Full Name"].ToString();
             text_email.Text = dataTable.Rows[0]["EMAIL"].ToString();
+            text_email.Enabled = false; // Because email can't be changed
             rbl_gender.SelectedIndex = (Convert.ToInt32(dataTable.Rows[0]["GENDER"]))-1;
             ddl_course.SelectedIndex = Convert.ToInt32(dataTable.Rows[0]["COURSES"]);
             ddl_country.SelectedIndex = Convert.ToInt32(dataTable.Rows[0]["COUNTRY"]);
@@ -124,12 +128,33 @@ namespace Student_Registration
             
             ddl_state.SelectedIndex = Convert.ToInt32(dataTable.Rows[0]["STATE"]);
             text_phone.Text = dataTable.Rows[0]["PHONE"].ToString();
-            //ViewState["img_name"] = dataTable.Rows[0]["PHOTO"].ToString();
+            ViewState["img_name"] = dataTable.Rows[0]["PHOTO"].ToString();
         }
 
         protected void btn_save_Click(object sender, EventArgs e)
         {
-            btn_save.Text = "Update"; 
+            String Ext = (Path.GetExtension(photo.PostedFile.FileName)).ToUpper();
+            String fName = Path.GetFileName(photo.PostedFile.FileName);
+            if (fName != "")
+            {
+                fName = DateTime.Now.Ticks.ToString() + fName;
+                photo.SaveAs(Server.MapPath("Photos" + "\\" + fName));
+                File.Delete(Server.MapPath("Photos" + "\\" + ViewState["img_name"]));
+            }
+            _connection.Open();
+            SqlCommand cmd = new SqlCommand("spUpdate", _connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@name", text_fname.Text);
+            cmd.Parameters.AddWithValue("@gender", rbl_gender.SelectedValue);
+            cmd.Parameters.AddWithValue("@course", ddl_course.SelectedValue);
+            cmd.Parameters.AddWithValue("@country", ddl_country.SelectedValue);
+            cmd.Parameters.AddWithValue("@state", ddl_state.SelectedValue);
+            cmd.Parameters.AddWithValue("@phone", text_phone.Text);
+            cmd.Parameters.AddWithValue("@id", Convert.ToInt32(Session["student_id"]));
+            cmd.Parameters.AddWithValue("@photo", fName != "" ? fName : ViewState["img_name"]);
+            cmd.ExecuteNonQuery();
+            _connection.Close();
+            lbl_msg.Text = "Changes has been saved sucessfully!";
         }
 
         protected void ddl_country_SelectedIndexChanged(object sender, EventArgs e)
