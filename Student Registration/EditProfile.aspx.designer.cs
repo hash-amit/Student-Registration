@@ -11,7 +11,7 @@ namespace Student_Registration
 {
 
 
-    public partial class Student_Registration
+    public partial class EditProfile
     {
 
         /// <summary>
@@ -105,12 +105,12 @@ namespace Student_Registration
         protected global::System.Web.UI.WebControls.Label lbl_msg;
 
         /// <summary>
-        /// btn_register control.
+        /// btn_save control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_register;
+        protected global::System.Web.UI.WebControls.Button btn_save;
     }
 }

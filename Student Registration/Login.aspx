@@ -51,13 +51,16 @@
         }
 
         .log_btn {
-            width: 100%;
+            width: 97%;
             background-color: #1e90ff;
             border: none;
             height: 40px;
             border-radius: 5px;
             font-weight: 600;
             color: #ffffff;
+            padding-left: 0px;
+            padding-right: 0px;
+            margin: 5px auto;
             cursor: pointer;
         }
 
@@ -75,12 +78,14 @@
             <asp:TextBox ID="text_pass" runat="server" TextMode="Password" placeholder="Password*" CssClass="form-control" required=""></asp:TextBox>
         </div>
 
-        <div class="fitem">
+        <Center>
             <asp:Label ID="lbl_msg" runat="server" Text="" ForeColor="Red"></asp:Label>
-        </div>
+        </Center>
 
         <div>
-            <asp:Button ID="btn_login" CssClass="log_btn" Text="Login" runat="server" OnClick="btn_login_Click" />
+            <center>
+                <asp:Button ID="btn_login" CssClass="log_btn" Text="Login" runat="server" OnClick="btn_login_Click" />
+            </center>
         </div>
     </div>
 </asp:Content>

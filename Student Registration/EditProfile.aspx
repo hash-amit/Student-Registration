@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="Change_Password.aspx.cs" Inherits="Student_Registration.Change_Password" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="EditProfile.aspx.cs" Inherits="Student_Registration.EditProfile" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -31,7 +31,8 @@
             padding: 5px;
         }
 
-        .fitem input{
+        .fitem input,
+        .fitem select {
             flex: 1;
             height: 100%;
             padding: 5px;
@@ -50,7 +51,7 @@
             height: 117%;
         }
 
-        .chng_btn {
+        .save_btn {
             width: 97%;
             background-color: #1e90ff;
             border: none;
@@ -64,27 +65,63 @@
             margin: 5px auto;
         }
 
+        .alignFileUpload {
+            display: flex; /* Use flexbox to align items */
+            align-items: center; /* Vertically center the items */
+            flex: 1;
+        }
+
     </style>
+
     <div class="fcontainer">
         <div class="fitem">
-            <asp:TextBox ID="text_current_pass" runat="server" placeholder="Current Password*" CssClass="form-control" required=""></asp:TextBox>
+            <asp:TextBox ID="text_fname" runat="server" placeholder="Full Name*" required=""></asp:TextBox>
         </div>
 
         <div class="fitem">
-            <asp:TextBox ID="text_new_pass" runat="server" TextMode="Password" placeholder="New Password*" CssClass="form-control" required=""></asp:TextBox>
+            <asp:TextBox ID="text_email" runat="server" placeholder="Email Address*" TextMode="Email" required=""></asp:TextBox>
         </div>
 
         <div class="fitem">
-            <asp:TextBox ID="text_confirm_pass" runat="server" TextMode="Password" placeholder="Confirm Password*" CssClass="form-control" required=""></asp:TextBox>
+            <asp:RadioButtonList ID="rbl_gender" runat="server" RepeatColumns="3">
+            </asp:RadioButtonList>
         </div>
 
+        <div class="fitem">
+            <asp:DropDownList ID="ddl_course" runat="server">
+            </asp:DropDownList>
+        </div>
+
+        <div class="fitem">
+            <asp:DropDownList ID="ddl_country" OnSelectedIndexChanged="ddl_country_SelectedIndexChanged" AutoPostBack="true" runat="server">
+            </asp:DropDownList>
+        </div>
+
+        <div class="fitem">
+            <asp:DropDownList ID="ddl_state" runat="server">
+            </asp:DropDownList>
+        </div>
+
+        <div class="fitem">
+            <asp:TextBox ID="text_phone" runat="server" placeholder="Phone"></asp:TextBox>
+        </div>
+
+        <div class="fitem">
+            <asp:TextBox ID="text_pass" runat="server" TextMode="Password" placeholder="Current Password To Verify You*"></asp:TextBox>
+        </div>
+
+        <div class="fitem alignFileUpload">
+            <asp:FileUpload ID="photo" runat="server"></asp:FileUpload>
+        </div>
+
+        <%--Error message lable--%>
         <center>
             <asp:Label ID="lbl_msg" runat="server" Text="" ForeColor="Red"></asp:Label>
         </center>
 
         <div>
             <center>
-                <asp:Button ID="btn_change_pass" CssClass="chng_btn" Text="Change Password" runat="server" OnClick="btn_change_pass_Click" />
+                <asp:Button ID="btn_save" runat="server" Text="Save" CssClass="save_btn" OnClick="btn_save_Click" />
             </center>
         </div>
     </div>

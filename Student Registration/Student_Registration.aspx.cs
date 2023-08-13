@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Drawing;
 using System.Configuration;
+using System.IO;
 
 namespace Student_Registration
 {
@@ -119,9 +120,19 @@ namespace Student_Registration
                     {
                         if(ddl_state.SelectedValue != "0")
                         {
-                            if((text_pass.Text.Length) == 10)
+                            if((text_phone.Text.Length) == 10)
                             {
-                                return true;
+                                string Ext = (Path.GetExtension(photo.PostedFile.FileName)).ToUpper();
+                                string fName = Path.GetFileName(photo.PostedFile.FileName);
+                                if ((fName != "") && (Ext == ".JPG" || Ext == ".JPEG" || Ext == ".PNG" || Ext == ".JFIF"))
+                                {
+                                    ViewState["fileName"] = DateTime.Now.Ticks + fName; ;
+                                    return true;
+                                }
+                                else
+                                {
+                                    lbl_msg.Text = "Please upload image file";
+                                }
                             }
                             else
                             {
@@ -178,6 +189,7 @@ namespace Student_Registration
             {
                 if (CheckDuplicateRegistration() == true)
                 {
+                    photo.SaveAs(Server.MapPath("Photos" + "\\" + ViewState["fileName"]));
                     _connection.Open();
                     SqlCommand sc = new SqlCommand("spInstertData", _connection);
                     sc.CommandType = CommandType.StoredProcedure;
@@ -189,6 +201,7 @@ namespace Student_Registration
                     sc.Parameters.AddWithValue("@state", ddl_state.SelectedValue);
                     sc.Parameters.AddWithValue("@phone", text_phone.Text);
                     sc.Parameters.AddWithValue("@pass", text_pass.Text);
+                    sc.Parameters.AddWithValue("@photo", ViewState["fileName"]);
                     sc.ExecuteNonQuery();
                     _connection.Close();
                     ClearForm();
